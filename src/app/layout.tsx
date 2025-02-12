@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import AppSidebar from "@/components/app/app-sidebar";
 import Header from "@/components/app/header";
+import QCProvider from "@/components/app/q-c-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 import "./globals.css";
@@ -33,11 +34,13 @@ export default function Layout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SidebarProvider>
-          <AppSidebar />
-          <div className="flex-1 flex flex-col">
-            <Header />
-            <main>{children}</main>
-          </div>
+          <QCProvider>
+            <AppSidebar />
+            <div className="flex-1 flex flex-col">
+              <Header />
+              <main>{children}</main>
+            </div>
+          </QCProvider>
         </SidebarProvider>
       </body>
     </html>
