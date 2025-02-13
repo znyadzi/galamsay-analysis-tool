@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 
 import FilePreviewer from "./dialogs/file-previewer";
+import useAnalysisResult from "@/hooks/use-analysis-result";
 import { Button } from "../ui/button";
 import {
   Sidebar,
@@ -25,6 +26,7 @@ const AppSidebar = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isFilePreviewerOpen, setIsFilePreviewerOpen] = useState(false);
   const [fileUrl, setFileUrl] = useState<string | null>(null);
+  const { analysisResultsQuery } = useAnalysisResult();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -66,6 +68,7 @@ const AppSidebar = () => {
               variant="outline"
               className="w-full rounded-full space-x-4"
               onClick={() => fileInputRef.current?.click()}
+              disabled={analysisResultsQuery.isLoading}
             >
               <p>Upload CSV data</p>
               <Plus className="w-6 h-6" />
