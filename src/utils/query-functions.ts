@@ -7,13 +7,13 @@ export const createAnalysisResult = async (file: File, threshold: number) => {
     formData.append("file", file);
     formData.append("threshold", threshold.toString());
 
-    const res = await axios.post("/analysis-results", formData, {
+    const res = await axios.post("/", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
 
-    return res.data.analysisResult;
+    return res.data;
   } catch (err) {
     console.error("Error from `createAnalysisResult` function:", err);
 
@@ -23,11 +23,7 @@ export const createAnalysisResult = async (file: File, threshold: number) => {
 
 export const readAnalysisResults = async () => {
   try {
-    const res = await axios.get("/", {
-      params: {
-        key: "74256270",
-      },
-    });
+    const res = await axios.get("/");
 
     return res.data;
   } catch (err) {
@@ -36,14 +32,14 @@ export const readAnalysisResults = async () => {
   }
 };
 
-// export const readAnalysisResult = async (id: string) => {
-//   try {
-//     const res = await axios.get(`/analysis-results/${id}`);
+export const readAnalysisResult = async (id: string) => {
+  try {
+    const res = await axios.get(`/:${id}`);
 
-//     return res.data.analysisResult;
-//   } catch (err) {
-//     console.error("Error from `readAnalysisResult` function:", err);
+    return res.data.analysisResult;
+  } catch (err) {
+    console.error("Error from `readAnalysisResult` function:", err);
 
-//     throw err;
-//   }
-// };
+    throw err;
+  }
+};
