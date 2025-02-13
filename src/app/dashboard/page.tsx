@@ -53,7 +53,15 @@ const Page = () => {
     );
   }
 
-  return <DataTable columns={columns} data={analysisResults} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={analysisResults.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      )}
+    />
+  );
 };
 
 export default Page;
