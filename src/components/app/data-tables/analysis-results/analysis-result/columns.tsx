@@ -12,6 +12,6 @@ export const columns: ColumnDef<RegionalSiteAverage>[] = [
   },
   {
     accessorKey: "averageGalamseySiteCount",
-    header: ({ column }) => <Header column={column} title="Date created" />,
+    header: ({ column }) => <Header column={column} title="Average" />,
   },
 ];

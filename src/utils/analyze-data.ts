@@ -1,31 +1,43 @@
+import { RegionalSiteAverage } from "@/types";
 import { DataFrame } from "danfojs";
 
 /**
  * Performs data analysis on the cleaned DataFrame.
  */
 export async function analyzeData(df: DataFrame, threshold: number) {
-  // Compute total number of galamsey sites
+  // 1. Calculate total number of sites
   const totalSites = df["numofsites"].sum();
 
-  // Find the region with the highest number of galamsey sites
-  const regionSummary = df.groupby(["region"]).col(["numofsites"]).sum();
-  const highestRegion = regionSummary
-    .sortValues("numofsites_sum", { ascending: false })
-    .iloc({ rows: [0] }).region[0];
+  // 2. Find region with highest number of sites
+  const regionSums = df.groupby(["region"]).agg({ numofsites: "sum" });
+  const sortedRegions = regionSums.sortValues("numofsites_sum", {
+    ascending: false,
+  });
+  const highestRegion = sortedRegions["region"].values[0];
 
-  // Find cities where the number of sites exceeds the threshold
-  const highCityDf = df.loc(df.column("numofsites").gt(threshold));
-  const highCities = highCityDf["city"].values;
+  // 3. Find cities exceeding threshold
+  const highSiteCities = df.query(df["numofsites"].gt(threshold));
+  const citiesAboveThreshold = highSiteCities
+    .column("city")
+    .values.map((city) => city as string);
 
-  // Compute average number of sites per region
-  const avgSitesPerRegion = regionSummary["numofsites_sum"].div(
-    regionSummary["region"].count()
-  );
+  // 4. Calculate average sites per region
+  const regionAverages = df.groupby(["region"]).agg({ numofsites: "mean" });
+  const averagesPerRegion: RegionalSiteAverage[] = [];
+
+  regionAverages.column("region").values.forEach((region, index) => {
+    averagesPerRegion.push({
+      region: region as string,
+      averageGalamseySiteCount: Number(
+        regionAverages["numofsites_mean"].values[index].toFixed(1)
+      ),
+    });
+  });
 
   return {
     totalSites,
     highestRegion,
-    highCities,
-    avgSitesPerRegion,
+    highCities: citiesAboveThreshold,
+    avgSitesPerRegion: averagesPerRegion,
   };
 }

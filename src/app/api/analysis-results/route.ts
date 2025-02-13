@@ -50,19 +50,19 @@ export async function POST(req: NextRequest) {
     const cleanedDf = await cleanData(fileText);
 
     // Perform analysis
-    const analysisResult = await analyzeData(cleanedDf, threshold);
+    const analyzedData = await analyzeData(cleanedDf, threshold);
 
     // Save result to database
-    const savedResult = await createAnalysisResult(
+    const analysisResult = await createAnalysisResult(
       (file as File).name,
-      analysisResult.totalSites,
-      analysisResult.highestRegion,
-      analysisResult.highCities,
-      analysisResult.avgSitesPerRegion,
+      analyzedData.totalSites,
+      analyzedData.highestRegion,
+      analyzedData.highCities,
+      analyzedData.avgSitesPerRegion,
       threshold
     );
 
-    return NextResponse.json({ message: "Analysis completed", savedResult });
+    return NextResponse.json({ analysisResult }, { status: 201 });
   } catch (err) {
     console.error("Error processing file:", err);
     return NextResponse.json(

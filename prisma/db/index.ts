@@ -36,23 +36,16 @@ export const readAnalysisResults = async () => {
   try {
     const analysisResults = await prismaClient.analysisResult.findMany();
 
-    return analysisResults;
+    const parsedAnalysisResults = analysisResults.map((analysisResult) => ({
+      ...analysisResult,
+      regionalSiteAverages: JSON.parse(
+        analysisResult.regionalSiteAverages as string
+      ),
+    }));
+
+    return parsedAnalysisResults;
   } catch (err) {
     console.error("Error from `readAnalysisResults` function:", err);
-
-    throw err;
-  }
-};
-
-export const readAnalysisResult = async (id: string) => {
-  try {
-    const analysisResult = await prismaClient.analysisResult.findUnique({
-      where: { id },
-    });
-
-    return analysisResult;
-  } catch (err) {
-    console.error("Error from `readGroup` function:", err);
 
     throw err;
   }

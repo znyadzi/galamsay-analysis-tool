@@ -96,11 +96,17 @@ const Page = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <ol className="list-decimal list-inside">
-            {analysisResult.citiesExceedingThreshold.map((city, index) => (
-              <li key={index}>{city}</li>
-            ))}
-          </ol>
+          {analysisResult.citiesExceedingThreshold.length > 0 ? (
+            <ol className="list-decimal list-inside">
+              {analysisResult.citiesExceedingThreshold.map((city, index) => (
+                <li key={index}>{city}</li>
+              ))}
+            </ol>
+          ) : (
+            <p className="text-muted-foreground">
+              No cities exceed the threshold.
+            </p>
+          )}
         </CardContent>
       </Card>
       <Card>

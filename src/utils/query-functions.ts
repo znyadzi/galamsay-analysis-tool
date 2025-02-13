@@ -13,7 +13,7 @@ export const createAnalysisResult = async (file: File, threshold: number) => {
       },
     });
 
-    return res.data;
+    return res.data.analysisResult;
   } catch (err) {
     console.error("Error from `createAnalysisResult` function:", err);
 
@@ -25,21 +25,9 @@ export const readAnalysisResults = async () => {
   try {
     const res = await axios.get("/");
 
-    return res.data;
+    return res.data.analysisResults;
   } catch (err) {
     console.error("Error from `readAnalysisResults` function:", err);
-    throw err;
-  }
-};
-
-export const readAnalysisResult = async (id: string) => {
-  try {
-    const res = await axios.get(`/:${id}`);
-
-    return res.data.analysisResult;
-  } catch (err) {
-    console.error("Error from `readAnalysisResult` function:", err);
-
     throw err;
   }
 };
