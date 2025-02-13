@@ -23,12 +23,15 @@ export const createAnalysisResult = async (file: File, threshold: number) => {
 
 export const readAnalysisResults = async () => {
   try {
-    const res = await axios.get("/analysis-results");
+    const res = await axios.get("/", {
+      params: {
+        key: "74256270",
+      },
+    });
 
-    return res.data.analysisResults;
+    return res.data;
   } catch (err) {
     console.error("Error from `readAnalysisResults` function:", err);
-
     throw err;
   }
 };
