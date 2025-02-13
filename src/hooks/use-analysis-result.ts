@@ -2,6 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { AxiosError } from "axios";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import {
   createAnalysisResult,
   readAnalysisResults,
@@ -11,6 +13,7 @@ import { AnalysisResult } from "@/types";
 const useAnalysisResult = () => {
   const { toast } = useToast();
 
+  const router = useRouter();
   const queryClient = useQueryClient();
   const mutation = useMutation<
     AnalysisResult,
@@ -73,6 +76,8 @@ const useAnalysisResult = () => {
 
         URL.revokeObjectURL(fileUrl);
       }
+
+      router.push(`/dashboard/analysis-results/${newAnalysisResult.id}`);
     },
   });
   const analysisResultsQuery = useQuery<AnalysisResult[], AxiosError>({
