@@ -1,15 +1,10 @@
 export interface AnalysisResult {
   id: string;
   totalGalamseySites: number;
-  regionWithMostSites: string;
+  regionWithHighestGalamseySites: string;
   citiesExceedingThreshold: string[];
   regionalSiteAverages: RegionalSiteAverage[];
-}
-
-export interface DataPoint {
-  city: string;
-  region: string;
-  galamseySiteCount: number;
+  threshold: number;
 }
 
 export interface RegionalSiteAverage {
