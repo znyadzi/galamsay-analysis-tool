@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { LayoutDashboard, Plus } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
+import FilePreviewer from "./dialogs/file-previewer";
+import { Button } from "../ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -15,17 +17,27 @@ import {
   SidebarMenuItem,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import { Button } from "../ui/button";
 
 const AppSidebar = () => {
   const pathname = usePathname();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isFilePreviewerOpen, setIsFilePreviewerOpen] = useState(false);
+  const [fileUrl, setFileUrl] = useState<string | null>(null);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    
+
     if (file) {
-      // Handle file upload
+      const fileUrl = URL.createObjectURL(file);
+
+      setSelectedFile(file);
+      setFileUrl(fileUrl);
+      setIsFilePreviewerOpen(true);
+
+      // Reset the input value to allow uploading the same file again
+      event.target.value = "";
     }
   };
 
@@ -67,6 +79,14 @@ const AppSidebar = () => {
         className="hidden"
         ref={fileInputRef}
         onChange={handleFileChange}
+      />
+      <FilePreviewer
+        open={isFilePreviewerOpen}
+        selectedFile={selectedFile}
+        fileUrl={fileUrl}
+        onOpenChange={setIsFilePreviewerOpen}
+        setFile={setSelectedFile}
+        setFileUrl={setFileUrl}
       />
     </Sidebar>
   );
