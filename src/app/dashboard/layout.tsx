@@ -15,7 +15,7 @@ const Layout = ({
         <AppSidebar />
         <div className="flex-1 flex flex-col">
           <Header />
-          <main>{children}</main>
+          <main className="flex-1 px-8 py-4">{children}</main>
           <Toaster />
         </div>
       </QCProvider>
