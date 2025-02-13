@@ -50,7 +50,10 @@ const AppSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild isActive={pathname === "/dashboard"}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.includes("/dashboard")}
+                >
                   <Link href="/dashboard">
                     <LayoutDashboard />
                     <p>Dashboard</p>
