@@ -2,7 +2,7 @@
 
 import useAnalysisResult from "@/hooks/use-analysis-result";
 import DataTable from "@/components/app/data-tables/analysis-results/data-table";
-import { columns } from "@/components/app/data-tables/analysis-results/column";
+import { columns } from "@/components/app/data-tables/analysis-results/columns";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
