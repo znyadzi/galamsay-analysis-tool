@@ -36,14 +36,14 @@ export const readAnalysisResults = async () => {
   }
 };
 
-export const readAnalysisResult = async (id: string) => {
-  try {
-    const res = await axios.get(`/analysis-results/${id}`);
+// export const readAnalysisResult = async (id: string) => {
+//   try {
+//     const res = await axios.get(`/analysis-results/${id}`);
 
-    return res.data.analysisResult;
-  } catch (err) {
-    console.error("Error from `readAnalysisResult` function:", err);
+//     return res.data.analysisResult;
+//   } catch (err) {
+//     console.error("Error from `readAnalysisResult` function:", err);
 
-    throw err;
-  }
-};
+//     throw err;
+//   }
+// };
