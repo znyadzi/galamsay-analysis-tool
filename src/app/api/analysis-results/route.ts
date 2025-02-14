@@ -62,7 +62,14 @@ export async function POST(req: NextRequest) {
       threshold
     );
 
-    return NextResponse.json({ analysisResult }, { status: 201 });
+    const parsedAnalysisResults = {
+      ...analysisResult,
+      regionalSiteAverages: JSON.parse(
+        analysisResult.regionalSiteAverages as string
+      ),
+    };
+
+    return NextResponse.json({ parsedAnalysisResults }, { status: 201 });
   } catch (err) {
     console.error("Error processing file:", err);
     return NextResponse.json(
