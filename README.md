@@ -1,6 +1,6 @@
 # Mini Galamsey Data Analysis Tool
 
-This project is a Django REST API designed to manage and analyze data related to illegal mining (Galamsey) sites in various towns and regions. It provides functionalities to:
+This Project provides functionalities to:
 - Upload and manage Galamsey site data via CSV files.
 - Perform CRUD operations on the data.
 - Analyze the data to calculate:
