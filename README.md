@@ -62,7 +62,7 @@ It’s recommended to use a reliable code editor such as [Visual Studio Code](ht
 1. **Clone the Repository**
 Clone the project from the version control system (e.g., Git):
 ``` bash
-   git clone <repository-url>
+   git clone [ https://github.com/znyadzi/galamsay-analysis-tool ]
    cd <your-project-folder>
 ```
 1. **Install Dependencies**
