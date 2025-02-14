@@ -29,10 +29,13 @@ Illegal mining (Galamsey) is a significant environmental and social issue in man
   - Region with the highest number of Galamsey sites.
 
 ---
+## Deployment
+This project has been deployed to the WWW using Vercel.
+You can find the Project at [`Galamsay-Analysis-Tool`](https://galamsay-analysis-tool.vercel.app/dashboard)
 
 ## Technologies Used
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [`Next.js`](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
