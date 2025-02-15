@@ -13,6 +13,14 @@ A web-based tool for analyzing **illegal mining ("Galamsey") activities** across
   - Average sites per region
 - **Data Persistence** (Stores past analyses in PostgreSQL)
 
+## Django API
+This project has a fully developed API with django in the repository:
+https://github.com/znyadzi/ofwa-Interview-test
+
+## Project Deployment
+This Project has been deployed to Vercel and can be accessed via:
+https://galamsay-analysis-tool.vercel.app/
+
 ## **⚙️ Tech Stack**
 
 - **Frontend:** Next.js, Shadcn UI, Tailwind CSS, React Query, Axios
