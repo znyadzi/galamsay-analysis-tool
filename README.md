@@ -1,149 +1,107 @@
-# Mini Galamsey Data Analysis Tool
+# **Galamsey Analysis Tool**
 
-This project is a Django REST API designed to manage and analyze data related to illegal mining (Galamsey) sites in various towns and regions. It provides functionalities to:
-- Upload and manage Galamsey site data via CSV files.
-- Perform CRUD operations on the data.
-- Analyze the data to calculate:
-  - The total number of Galamsey sites across all regions.
-  - The average number of Galamsey sites per region.
-  - The region with the highest number of Galamsey sites.
+A web-based tool for analyzing **illegal mining ("Galamsey") activities** across various regions in Ghana. Users can upload CSV files, and the system will clean, analyze, and present insights.
 
----
+## **🚀 Features**
 
-## Why This Project Was Created
+- **Upload CSV Files** containing data on Galamsey activities
+- **Automated Data Cleaning** (fix headers, remove duplicates, handle missing values)
+- **Statistical Analysis**, including:
+  - Total number of Galamsey sites
+  - Region with the highest sites
+  - Cities exceeding a given threshold
+  - Average sites per region
+- **Data Persistence** (Stores past analyses in PostgreSQL)
 
-Illegal mining (Galamsey) is a significant environmental and social issue in many regions. This project was created to:
-1. Provide a centralized platform for storing and managing Galamsey site data.
-2. Enable easy analysis of the data to identify trends and hotspots.
-3. Support decision-making for environmental and regulatory bodies.
+## **⚙️ Tech Stack**
 
----
+- **Frontend:** Next.js, Shadcn UI, Tailwind CSS, React Query, Axios
+- **Backend:** Next.js API Routes
+- **Database:** PostgreSQL (on Supabase)
+- **ORM:** Prisma
+- **Libraries Used:**
+  - `papaparse` – CSV Parsing
+  - `danfojs` – Data Analysis
 
-## Features
+## **📦 Installation**
 
-- **CRUD Operations**: Create, Read, Update, and Delete Galamsey site data.
-- **CSV Upload**: Upload Galamsey site data via CSV files.
-- **Data Analysis**:
-  - Total number of Galamsey sites across all regions.
-  - Average number of Galamsey sites per region.
-  - Region with the highest number of Galamsey sites.
+### **1️⃣ Clone the Repository**
 
----
-## Deployment
-This project has been deployed to the WWW using Vercel.
-You can find the Project at [`Galamsay-Analysis-Tool`](https://galamsay-analysis-tool.vercel.app/dashboard)
-
-## Technologies Used
-
-This is a [`Next.js`](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-To run the development server, use the below command:
-
-# How to Run the Next.js Application
-## Prerequisites
-1. **Node.js**
-Ensure that Node.js is installed on your system. You can download the latest LTS version from [Node.js official website](https://nodejs.org/).
-To verify installation, run the following command in your terminal:
-``` bash
-   node -v
-```
-Also, verify `npm` (Node Package Manager) using:
-``` bash
-   npm -v
-```
-1. **Package Manager**
-The project can use `npm` (default) or `yarn`. If you don't have `yarn` installed but prefer to use it, install it globally:
-``` bash
-   npm install -g yarn
-```
-1. **Code Editor**
-It’s recommended to use a reliable code editor such as [Visual Studio Code](https://code.visualstudio.com/).
-
-## Steps to Set Up the Project
-1. **Clone the Repository**
-Clone the project from the version control system (e.g., Git):
-``` bash
-   git clone [ https://github.com/znyadzi/galamsay-analysis-tool ]
-   cd <your-project-folder>
-```
-1. **Install Dependencies**
-Install all the project dependencies specified in `package.json` using npm or yarn:
-``` bash
-   npm install
-```
-Or, if you're using yarn:
-``` bash
-   yarn install
-```
-1. **Environment Variables**
-Create a `.env.local` file in the root directory of the project and add the necessary environment variables. Refer to `.env.example` (if available) for guidance on what variables need to be defined.
-Example:
-``` plaintext
-   NEXT_PUBLIC_API_URL=http://your-api-url.com
-```
-1. **Run the Development Server**
-Start the Next.js application in development mode:
-``` bash
-   npm run dev
-```
-Or, using yarn:
-``` bash
-   yarn dev
-```
-The application will be accessible at:
-``` plaintext
-   http://localhost:3000
-```
-## Additional Notes for Setup
-1. **Database Connection**
-If your application connects to a database, ensure that the database is set up and running. Verify the connection details in your environment file or configuration files.
-2. **Linting and Formatting**
-Lint your code and ensure it is properly formatted before running it in production. Commands:
-``` bash
-   npm run lint
-   npm run prettier --write .
-```
-1. **Build for Production**
-To create an optimized build for production, run:
-``` bash
-   npm run build
-```
-1. **Start the Production Server**
-After building the app, start the production server:
-``` bash
-   npm start
-```
-## Troubleshooting
-- **Port Already in Use**
-If port `3000` is already in use, specify a different port:
-``` bash
-   PORT=4000 npm run dev
-```
-- **Dependency Issues**
-Ensure all dependencies are installed correctly, and if issues persist, try cleaning your dependency files:
-``` bash
-   rm -rf node_modules package-lock.json
-   npm install
+```sh
+git clone https://github.com/znyadzi/galamsey-analysis-tool.git
+cd galamsey-analysis-tool
 ```
 
+### **2️⃣ Install Dependencies**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```sh
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **3️⃣ Set Up Environment Variables**
 
-## Learn More
+1. Create a [Supabase](https://supabase.com) account.
+2. In your Supabase **dashboard**, create a new project (note your password).
+3. Click on the **"Connect"** tab in the header.
+4. Select the **"ORM"** tab.
+5. Ensure the selected tool is **"Prisma"**.
+6. Copy the text from the **".env.local"** tab.
+7. In your text editor, create a **`.env`** file and paste the copied text.
+8. Replace **`[YOUR-PASSWORD]`** in the connection string with your **actual password**.
 
-To learn more about Next.js, take a look at the following resources:
+Now your environment variables are set up! ✅
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **4️⃣ Run the Development Server**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run dev
+```
 
-## Deploy on Vercel
+App will be available at **`http://localhost:3000`**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **🛠️ API Endpoints**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **1️⃣ Upload and Analyze CSV Data**
+
+**POST `/api/analysis-results`**
+
+- **Body:** FormData with file & threshold
+- **Response**
+  ```json
+  {
+    "id": "cm73yp9dt0000jo03fvgtt7ng",
+    "filename": "raw_galamsay_data.csv",
+    "totalGalamseySites": 686,
+    "regionWithHighestGalamseySites": "Ashanti",
+    "citiesExceedingThreshold": ["Kumasi", "Accra", "Adenta", "Tema"],
+    "regionalSiteAverages": [
+      { "region": "Western", "averageGalamseySiteCount": 13.6 },
+      { "region": "Ashanti", "averageGalamseySiteCount": 16.1 },
+      { "region": "Upper East", "averageGalamseySiteCount": 4.5 },
+      { "region": "Greater Accra", "averageGalamseySiteCount": 25.4 },
+      { "region": "Northern", "averageGalamseySiteCount": 6 },
+      { "region": "Central", "averageGalamseySiteCount": 12.7 },
+      { "region": "Bono", "averageGalamseySiteCount": 10.5 },
+      { "region": "Upper West", "averageGalamseySiteCount": 6 },
+      { "region": "Volta", "averageGalamseySiteCount": 10.8 },
+      { "region": "Eastern", "averageGalamseySiteCount": 9.3 },
+      { "region": "Bono East", "averageGalamseySiteCount": 13.5 },
+      { "region": "Savannah", "averageGalamseySiteCount": 7 },
+      { "region": "", "averageGalamseySiteCount": 15 },
+      { "region": "Invalid Region", "averageGalamseySiteCount": 16 }
+    ],
+    "threshold": 24,
+    "createdAt": "2025-02-13T23:19:30.498Z"
+  }
+  ```
+
+### **2️⃣ Fetch Past Analyses**
+
+**GET `/api/analysis-results`**
+
+- **Response:** List of previous analysis results
+
+## **📌 Notes**
+
+- Ensure your **CSV file** has the correct headers: `City, Region, Number_of_Galamsey_Sites`
+- The **threshold** parameter determines which cities are flagged as high-risk
